@@ -1,0 +1,21 @@
+{
+  "name": "playwright-assessment",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "test:api": "npx playwright test tests/api.spec.ts",
+    "test:headed": "npx playwright test --headed",
+    "report": "npx playwright show-report",
+    "generate-report": "node generateReport.js"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.0.0",
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^26.0.1",
+    "dotenv": "^16.4.0"
+  },
+  "dependencies": {
+    "cucumber-html-reporter": "^7.2.0"
+  }
+}

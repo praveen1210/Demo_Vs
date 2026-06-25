@@ -1,0 +1,11 @@
+{
+  "PAYMENT_PAGE_URL": "https://payment.denovosystem.tech/api/v2/merchantPay?t=eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..io_P67ZayanZwuZF.RaILeS7IWEArb6f-gxUIkJ6PGoH33ZdJ7IZO1yHYxZc22CWLy-57LklEhXIupoujNJu9jj1cjZ26btaYLQb_FbncrT2wYGgxywdm5RruUZoI78B2y4adBO_iLNEz_vylpiDdayi1G9gFtEuPUHuKk3XYe3O183g92dg7tUrHZPrD50K81GBrtNzzuETE0GUtf8HDk7TIJwIIthU.YH7wyazMwm1cNCrp2WpvAw",
+  "CARD_AMOUNT": "10.00",
+  "CARD_NUMBER": "4242424242424242",
+  "CARD_EXPIRY": "26/27",
+  "CARD_CVV": "999",
+  "CARD_HOLDER": "Test User",
+  "CARD_EMAIL": "praveendance.aj@gmail.com",
+  "CARD_PHONE": "8122812418",
+  "CARD_CUSTOMER_NAME": "Praveenkumar"
+}
