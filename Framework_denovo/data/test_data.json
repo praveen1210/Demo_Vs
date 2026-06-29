@@ -5,9 +5,12 @@
   "CARD_EXPIRY": "26/27",
   "CARD_CVV": "999",
   "CARD_HOLDER": "Test User",
-  "CARD_EMAIL": "praveendance.aj@gmail.com",
+  "CARD_EMAIL": "praveenkumarrmuckpk@gmail.com",
   "CARD_PHONE": "8122812418",
   "CARD_CUSTOMER_NAME": "Praveenkumar",
-  "zipCode": "12345"
-  
+  "CARD_ZIP_CODE": "12345",
+  "CARD_GMAIL_PASSWORD": "Thamizhanpk",
+  "CHROME_USER_DATA_DIR": "",
+  "BROWSER_CHANNEL": "chrome",
+  "googleSignIN":"https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Faccounts.google.com%2F&dsh=S1896455433%3A1782716152519265&followup=https%3A%2F%2Faccounts.google.com%2F&passive=1209600&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvz9kAc4WA1RvUnQMQ08jUE5y1NAuvHpM4pxmLDRfM2mEzxRK5Wct0O3v5QRJexZJX0zgXMd_g"
 }
