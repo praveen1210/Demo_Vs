@@ -1,0 +1,113 @@
+
+What's Playwright: 
+
+	Playwright is an open-source end-to-end automation testing framework developed by Microsoft.
+	It is used for automating modern web applications across multiple browsers like Chromium, Firefox, and WebKit.
+
+	Playwright provides built-in features such as auto-waiting, parallel execution, network interception, API testing, and cross-browser support, which help create reliable and fast automation tests.
+
+	It also supports multiple languages including TypeScript, JavaScript, Python, Java, and .NET.
+
+
+Why playwright over selenium:
+
+	Playwright is preferred over Selenium because it provides faster and more reliable automation.
+	Unlike Selenium, Playwright communicates directly with browser engines without relying on the WebDriver protocol, which improves execution speed and stability.
+
+	Playwright also provides built-in auto-waiting, so it automatically waits for elements to become actionable before performing operations. This significantly reduces flaky tests and removes the need for most explicit waits.
+
+	Another advantage is its built-in support for modern browsers like Chromium, Firefox, and WebKit, enabling true cross-browser testing including Safari support.
+
+	Additionally, Playwright offers powerful features like network interception, API testing, parallel execution, multiple browser contexts, and advanced locator strategies.
+
+Playwright Architecture:
+
+	Playwright follows a client-server style architecture where the Playwright test runner executes tests and communicates with browser engines through Playwright APIs without relying on WebDriver.
+
+	The test runner launches browsers like Chromium, Firefox, or WebKit. Inside the browser, Playwright creates BrowserContexts, which are isolated sessions similar to incognito windows. Each BrowserContext has separate cookies, cache, and local storage, ensuring test isolation.
+
+	Inside a BrowserContext, Page objects are created, which represent browser tabs used for navigation and user interactions.
+
+	This architecture helps Playwright achieve faster execution, reliable parallel testing, and reduced flakiness.
+
+What is BrowserContext?
+
+	“BrowserContext is an isolated browser session in Playwright, similar to an incognito window.
+	Each BrowserContext has separate cookies, cache, local storage, and session data, ensuring complete test isolation.”
+
+Difference Between Browser and BrowserContext
+
+	“Browser is the actual browser instance launched by Playwright, such as Chromium or Firefox.
+
+	BrowserContext is an isolated session created inside the browser. Multiple BrowserContexts can run independently within the same browser instance without sharing cookies, cache, or storage.
+
+	Inside each BrowserContext, Page objects are created, which represent browser tabs.”
+	
+Browser = Chrome Application
+BrowserContext = Incognito Window
+Page = Tab
+
+Auto - Waiting: 
+
+	Auto-waiting is a built-in Playwright feature where Playwright automatically waits for elements to become actionable before performing operations.
+
+	It checks whether the element is visible, enabled, stable, and attached to the DOM before executing actions like click or fill.
+
+	This reduces flaky tests and minimizes the need for explicit waits.
+
+What are locators in Playwright?
+
+	“Locators in Playwright are used to identify and interact with web elements on a page.
+	Playwright locators provide auto-waiting and retry mechanisms, which help create stable and reliable tests.”
+	
+
+Common Locator Strategies
+
+	“Playwright provides built-in locator methods such as:
+
+	getByRole()
+	getByText()
+	getByLabel()
+	getByPlaceholder()
+	getByTestId()
+	CSS selectors
+	XPath selectors”
+
+Which Locator is Preferred?
+
+	“getByRole() is generally preferred because it is based on accessibility attributes, making tests more stable, readable, and closer to real user interactions.”
+
+
+Q1: What are the key advantages of Playwright over Selenium?
+Faster execution due to direct browser communication (no WebDriver layer)
+Auto-waiting eliminates need for explicit waits
+Built-in support for multiple browsers (Chromium, Firefox, WebKit)
+Handles modern web apps better (SPAs, dynamic content)
+Parallel execution is simpler and faster
+Network interception & mocking built-in
+Better element handling (no stale element issues)
+
+
+Q2: What is auto-waiting in Playwright?
+Auto-waiting is a feature where Playwright automatically waits for elements to be:
+
+Visible
+Enabled
+Stable (not moving)
+Attached to the DOM
+
+before performing actions, reducing the need for manual waits.
+
+Q3: Why is async/await important in Playwright?
+Playwright operations are asynchronous (browser interactions take time)
+async/await ensures sequential execution of steps
+Prevents race conditions and flaky tests
+Makes code more readable and maintainable
+
+
+Q4: What browsers does Playwright support?
+Playwright supports:
+
+Chromium (Chrome, Edge)
+Firefox
+WebKit (Safari engine)

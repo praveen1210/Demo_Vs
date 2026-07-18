@@ -1,0 +1,238 @@
+Locators:
+
+page.getByRole('button', { name: 'Submit' })
+page.getByLabel('Email')
+page.getByPlaceholder('Enter password')
+page.getByText('Welcome')
+page.getByTestId('login-btn')
+page.locator('#id or .class')
+
+Visibility & state:
+
+await expect(locator).toBeVisible();
+await expect(locator).toBeHidden();
+await expect(locator).toBeEnabled();
+await expect(locator).toBeDisabled();
+await expect(locator).toBeEditable();
+await expect(locator).toBeEmpty();
+
+Text & value:
+await expect(locator).toHaveText('Success');
+await expect(locator).toContainText('Welcome');
+await expect(input).toHaveValue('test@example.com');
+
+BrowserContext --> used for test Isolation
+page --> used to interact the browser
+
+--------------------------------------------------------
+
+const btn=await page.locator('#LoginBtn');
+
+For Enabled/Disabled:
+
+if(btn.toBeEnabled()){
+btn.click();
+}
+
+For Visibility:
+if(btn.toBeVisible()){
+}
+
+for CheckBox:
+
+if(!(btn.isChecked())){
+btn.check();
+}
+
+Check text & Content:
+
+const text=await page.locator('#text');
+
+if((text.textContent())?.includes('Success')){
+console.log('success')
+}
+
+Optional popup:
+
+const popup = page.locator('#welcomePopup');
+
+if (await popup.isVisible()) {
+  await page.getByRole('button', { name: 'Close' }).click();
+}
+
+
+URL-based condition:
+
+if (page.url().includes('dashboard')) {
+  console.log('User logged in');
+}
+
+Count-based condition:
+
+const items = page.locator('.product');
+
+if (await items.count() > 0) {
+  console.log('Products are available');
+}
+
+methods you can use in if--> These return booleans:
+
+isVisible()
+isHidden()
+isEnabled()
+isDisabled()
+isChecked()
+isEditable()
+
+isVisible --> Returns a boolean (true / false), not includes waits condition, it just check the current state
+toBeVisable --> This is assertion, it have wait condition & Fails the test if it doesn’t become visible within timeout
+
+
+
+
+
+
+test('Login and dashboard is displayed, async ({page}) => {
+
+await page.goto('url');
+await page.fill('username', 'pkr');
+await page.fill('password','pass');
+await page.click('login');
+
+const dashboard = await page.locator('/h1');
+await expect(dashboard).toHaveText('Dashboard');
+
+})
+
+
+const rows=await page.locator('/table/tr');
+
+const count=await rows.count();
+
+for(let i=0; i<count;i++){
+
+const text=await rows.nth(i).locator('td').nth(1).textContent();
+console.log(`The ${i}st data :` +text);
+
+}
+
+
+
+
+test('search product and verify', async ({page})  => {
+
+await page.goto('');
+await page.fill('#search', 'laptop');
+await page.press('#search', 'Enter');
+
+const locator=await page.locator('');
+
+for(let i =0; i<await locator.count(); i ++){
+
+await expect(locator.nth(i)).toContainText('laptop');
+}
+
+const response = await page.waitForResponse("**/api/data");
+expect(response.status()).toBe(200);
+await expect(page.locator('#data')).toBeVisible();
+
+
+page.on('dialog', async dialog=> {
+
+expect(dialog.message()).toBe('Are You Sure?');
+await dialog.accept();
+
+})
+
+
+const users=['user1', 'user2'];
+
+const users=[
+{ username: 'User1', password: 'pass1'},
+{username: 'User2', password: 'pass2'}
+];
+
+for (const user of users){
+test('Login for ${user.username}', async({page})=>
+
+await page.goto('url');
+await page.fill('username', user.username);
+    await page.fill('#password', user.password);
+
+    await page.click('#login');
+
+)}
+
+await expect(page.locator('#submit')).toBeDisabled();
+
+
+How do you design a scalable automation framework?
+
+"When I design a scalable automation framework, I focus on modularity, reusability, maintainability, 
+and ease of execution across different environments. I follow design patterns like the Page Object Model, 
+separate test logic from page interactions and test data, and use configuration files so the same 
+tests can run across multiple environments without code changes. I also integrate reporting, logging, 
+CI/CD, and parallel execution to ensure the framework can grow with the application."
+
+Example Folder Structure:
+
+	project/
+
+	├── tests/
+	│   ├── login.spec.ts
+	│   ├── order.spec.ts
+	│
+	├── pages/
+	│   ├── LoginPage.ts
+	│   ├── DashboardPage.ts
+	│
+	├── fixtures/
+	│   ├── baseFixture.ts
+	│
+	├── utils/
+	│   ├── logger.ts
+	│   ├── helpers.ts
+	│
+	├── data/
+	│   ├── users.json
+	│
+	├── config/
+	│   ├── dev.json
+	│   ├── qa.json
+	│
+	├── playwright.config.ts
+	│
+	├── reports/
+	│
+	└── .auth/
+		└── auth.json
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

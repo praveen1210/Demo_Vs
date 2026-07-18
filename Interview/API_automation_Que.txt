@@ -1,0 +1,226 @@
+“In our Playwright framework, we use APIRequestContext for API automation.
+We validate status codes, response body, headers, authentication, and schemas.
+We also integrate API and UI testing by creating test data through APIs to reduce execution time and improve stability.
+Additionally, we maintain reusable API utility classes and clean up test data after execution
+
+
+import {test, expect, request} from "@playwright/test";
+
+test('api get method', async({page, request})=> {
+
+await page.goto('url');
+await expect(page.locator('/h1')).toHaveText(/dashboard/);
+
+const response=await request.get('api/path');
+
+expect(response.ok()).toBeTruthy();
+
+const responseJson=await response.json();
+expect(body.data).toMatchObject({
+UserName: 'Praveen'
+
+})
+
+})
+
+
+
+How do you handle API testing in Playwright?
+	Answer:
+
+	“In our framework, we use Playwright’s APIRequestContext for API testing.
+
+	We validate:
+
+	Status codes
+	Response body
+	Schema validation
+	Authentication tokens
+	Headers
+
+	We also combine API and UI testing. For example:
+
+	Creating test data through API
+	Validating UI reflects backend changes
+	Cleaning test data after execution”
+	Example Use Case:
+
+	“Instead of creating users manually through UI every time, we create them through API to reduce execution time.”
+	
+Basic API Test Example
+
+	import { test, expect, request } from '@playwright/test';
+
+	test('Get user details API', async ({ request }) => {
+
+	  const response = await request.get('https://reqres.in/api/users/2');
+
+	  // Validate status code
+	  expect(response.status()).toBe(200);
+
+	  // Convert response to JSON
+	  const responseBody = await response.json();
+
+	  // Validate response body
+	  expect(responseBody.data.first_name).toBe('Janet');
+
+	  // Validate headers
+	  expect(response.headers()['content-type'])
+		.toContain('application/json');
+	});
+
+POST API Example (Create User):
+
+	import { test, expect } from '@playwright/test';
+
+	test('Create new user', async ({ request }) => {
+
+	  const response = await request.post(
+		'https://reqres.in/api/users',
+		{
+		  data: {
+			name: 'John',
+			job: 'QA Engineer'
+		  }
+		}
+	  );
+
+	  expect(response.status()).toBe(201);
+
+	  const responseBody = await response.json();
+
+	  expect(responseBody.name).toBe('John');
+	  expect(responseBody.job).toBe('QA Engineer');
+	});
+
+Authentication Token Handling:
+
+	import { test, expect } from '@playwright/test';
+
+	test('Get secured user profile', async ({ request }) => {
+
+	  const token = 'your_access_token';
+
+	  const response = await request.get(
+		'https://api.example.com/profile',
+		{
+		  headers: {
+			Authorization: `Bearer ${token}`
+		  }
+		}
+	  );
+
+	  expect(response.status()).toBe(200);
+	});
+
+Schema Validation Example:
+
+	We can validate whether the API response structure is correct.
+
+	Using ajv library: (npm install ajv)
+	
+	import { test, expect } from '@playwright/test';
+	import Ajv from 'ajv';
+
+	test('Validate response schema', async ({ request }) => {
+
+	  const response = await request.get(
+		'https://reqres.in/api/users/2'
+	  );
+
+	  const body = await response.json();
+
+	  const schema = {
+		type: 'object',
+		properties: {
+		  data: {
+			type: 'object',
+			properties: {
+			  id: { type: 'number' },
+			  email: { type: 'string' },
+			  first_name: { type: 'string' }
+			},
+			required: ['id', 'email', 'first_name']
+		  }
+		}
+	  };
+
+	  const ajv = new Ajv();
+	  const validate = ajv.compile(schema);
+
+	  expect(validate(body)).toBeTruthy();
+	});
+	
+	
+	
+
+API Status Codes:
+
+Major api status codes --> 200 OK,201 Created, 204 No Content, 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 500 Internal Server Error
+
+HTTP status codes indicate whether an API request succeeded or failed.
+In API automation, we mainly validate success codes like 200, 201, and 204, client error codes like 400, 401, 403, 404, and server error codes like 500.
+We use these validations to ensure APIs behave correctly for both positive and negative scenarios.
+
+| Code | Meaning    | Common Usage                    |
+| ---- | ---------- | ------------------------------- |
+| 200  | OK         | Successful GET/PUT              |
+| 201  | Created    | Resource created successfully   |
+| 202  | Accepted   | Request accepted for processing |
+| 204  | No Content | Success but no response body    |
+| Code | Meaning              | Reason                 |
+| ---- | -------------------- | ---------------------- |
+| 400  | Bad Request          | Invalid payload        |
+| 401  | Unauthorized         | Missing/invalid auth   |
+| 403  | Forbidden            | No access permission   |
+| 404  | Not Found            | Resource doesn't exist |
+| 405  | Method Not Allowed   | Wrong HTTP method      |
+| 409  | Conflict             | Duplicate data         |
+| 422  | Unprocessable Entity | Validation failed      |
+| 429  | Too Many Requests    | Rate limit exceeded    |
+| Code | Meaning               |
+| ---- | --------------------- |
+| 500  | Internal Server Error |
+| 502  | Bad Gateway           |
+| 503  | Service Unavailable   |
+| 504  | Gateway Timeout       |
+
+408 — Request Timeout
+
+import {test, expect, request} from '@playwright/test';
+
+test("API testing", async ({page, request})=> {
+
+const response=await request.get('api');
+
+expect(response.status()).toBe(200);
+
+const responseBody= await response.json();
+
+expect(responseBody.name).toBe('john');
+expect(response.headers()[content-type]).toContain('application/json')
+
+
+});
+
+-- Post Method
+const reponse=await request.post('api',
+{
+data:{
+
+name : 'Praveen',
+age : 26
+}})
+
+3. Authentication Token Handling
+  const response = await request.get(
+    'https://api.example.com/profile',
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+
+“In Playwright, we don’t need Rest Assured because Playwright provides built-in API support through APIRequestContext.
+We can perform GET, POST, PUT, DELETE operations, validate responses, handle authentication, and combine API + UI testing within the same framework.”

@@ -1,0 +1,289 @@
+1.Find the vouwels
+
+	let str="praveenkumar RAj";
+	let ch="aeiou";
+	let count=0;
+
+	for(let c of str.toLowerCase()){
+		
+		if(ch.includes(c)){
+			count ++;
+		}
+		
+	}
+	console.log(count);
+
+2. Count uppercase, lowercase, digits, special characters
+
+	let str = "Hello123@";
+
+	let upper = 0;
+	let lower = 0;
+	let digit = 0;
+	let special = 0;
+
+	for (let c of str) {
+	  if (c >= 'A' && c <= 'Z') upper++;
+	  else if (c >= 'a' && c <= 'z') lower++;
+	  else if (c >= '0' && c <= '9') digit++;
+	  else special++;
+	}
+
+	console.log(upper, lower, digit, special);
+
+
+3. Find duplicate characters
+
+		let str = "programming";
+
+		let rev=str.split('');
+
+		console.log(rev)
+
+	for(let i=0; i< rev.length; i++){
+		
+		for(let j=1+i; j<rev.length; j++){
+			if(rev[i]===rev[j]){
+				console.log(rev[i]);
+			}
+		}
+	}
+
+
+4. Reverse a string & Palindrome
+
+	let str:string ="madam";
+	let ch="";
+
+	for(let c=str.length-1; c>=0; c--){
+		ch=ch+str.charAt(c);
+		
+	}
+	console.log(ch);
+
+	if(ch===str){
+		console.log("Its palindrome");
+	}else{
+		console.log("Not Palindrome");
+	}
+
+5. Count words in a sentence & words
+
+	let str ="madam test";
+	let words=str.split(" ").join('');
+	console.log(words.length);
+
+6. Find second largest number in an array.
+
+	let arr:number[] = [11, 43, 54, 12, 34,10];
+
+	let largest=arr[0];
+	let secondLarge=arr[0];
+
+	for(let num of arr){
+		
+		if(num>largest){
+			
+			secondLarge=largest;
+			largest=num;
+		}
+		
+		  else if(num > secondLarge && num !== largest){
+        secondLarge=num;
+    }
+	}
+	console.log(largest);
+
+	console.log("Second Largest:", secondLarge);
+
+7. Count duplicates or frequency of characters.
+	
+	let str = "programming";
+
+	let count = {};
+
+	for (let ch of str) {
+		if (count[ch]) {
+			count[ch]++;
+		} else {
+			count[ch] = 1;
+		}
+	}
+	console.log(count);
+
+8. Reverse array
+	let arr = [11, 43, 54, 12, 34,10];
+	console.log(arr.reverse());
+
+9. Accending Order
+
+	let arr = [11, 43, 54, 12, 34,10];
+
+	arr.sort((a,b)=> a-b);
+	console.log(arr.reverse())
+	
+10. Decending Order 
+
+	let arr = [11, 43, 54, 12, 34,10];
+
+	arr.sort((a,b)=> b-a);
+	console.log(arr.reverse())
+
+11. Find largest number:
+	let arr = [10, 20, 5, 40];
+
+	let max = arr[0];
+
+	for (let num of arr) {
+		if (num > max) {
+			max = num;
+		}
+	}
+
+	console.log(max);
+
+12. Find smallest number
+
+	let min = arr[0];
+
+	for (let num of arr) {
+		if (num < min) {
+			min = num;
+		}
+	}
+
+
+13. Odd & Even num
+
+	let num = 10;
+
+	if(num % 2===0){
+		  console.log("Even Number");
+	} else {
+		console.log("Odd Number");
+	}
+
+14. Print Odd & even num
+
+	for(let i=0; i<=10; i++){
+		
+		if(i % 2 !== 0){ // 2===0 --> even
+			console.log(i);			
+		}else{
+			console.log("Even Num : " +i);
+		}
+	}
+
+15. First non-repeating character:
+
+	let input="swiss";
+
+
+	for(let c of input){
+		
+	  if(input.indexOf(c)=== input.lastIndexOf(c)){
+		  console.log(c);
+		  break;
+	  }
+	}
+	
+	
+Print num alone or without num: (^ includes)
+	let str = "Hello123@ World!";
+
+	const result=str.replace(/[^0-9 ]/g, "");
+
+	console.log(result);
+	str.replace(/[^a-zA-Z ]/g, '')
+
+
+Separate the num & Char and sum the num
+	let input="NHJD78Dh789";
+
+	let cln=input.replace(/[^a-zA-Z]/g,"").split(' ').join('');
+	let num=input.replace(/[^0-9]/g,"").split('');
+	let count = 0;
+	for(let a=0; a<num.length; a++){
+		
+		count=count+Number(num[a]);
+	}
+
+	console.log(cln);
+	console.log(num);
+	console.log(count);
+	
+input = AAABBC & output=A3B2C1
+
+	let input = "AAABBC";
+	let result = "";
+	let count = 1;
+
+	for (let i = 1; i <= input.length; i++) {
+		if (input[i] === input[i - 1]) {
+			count++;
+		} else {
+			result += input[i - 1] + count;
+			count = 1;
+		}
+	}
+
+	console.log(result);
+	
+	
+
+
+// Java
+
+WordCount, SpaceCount
+Printing *, 123
+Reverse a String
+Remove first and last word in a string
+Swapping the words in a string
+print repeated words
+print repeated characters
+
+
+  String r = "";
+		    for (int i = 1; i <= 10; i++) {
+		        r= i+r;
+		        System.out.println(r);
+		    }
+1
+21
+321
+4321
+54321
+654321
+
+public class WordAndSpaceCount {
+    public static void main(String[] args) {
+        // Given string
+        String text = "Welcome to java";
+ 
+        // Call the method to count words and spaces
+        countWordsAndSpaces(text);
+    }
+ 
+    public static void countWordsAndSpaces(String text) {
+        // Count words
+        String[] words = text.split("\\s+");
+        int wordCount = words.length;
+ 
+        // Count spaces
+        int spaceCount = text.length() - text.replace(" ", "").length();
+ 
+        // Print the results
+        System.out.println("Word Count: " + wordCount);
+        System.out.println("Space Count: " + spaceCount);
+    }
+}
+
+
+
+Mexico a city of maxico
+
+Mexico-2
+a-1
+city-1
+of-1
+
